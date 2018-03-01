@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    :root {
+        --shadow: #869b98;
+        --background-color: #d0dfdf;
+        --background: linear-gradient(#accac9, #dbebe8);
+    }
+
+    body {
+        background-color: var(--background-color);
+        background-image: radial-gradient(#accac9 30%, #dbebe8);
+        animation: ani 2.5s ease-in-out infinite;
+    }
+
+    #container {
+        height: 500px;
+        width: 500px;
+        border-radius: 50%;
+        margin: 10% auto;
+        overflow: hidden;
+        transform-style: preserve-3d;
+        perspective: 100px;
+
+    }
+
+    #container div {
+        background-color: var(--background-color);
+        background-image: var(--background);
+        border-radius: 49%;
+        box-shadow: inset 0px 0px 2px 1px var(--shadow);
+        position: absolute;
+    }
+
+    .a {
+        margin: 5%;
+        height: 90%;
+        width: 90%;
+        z-index: 1;
+        animation: zoom 2.5s linear infinite;
+    }
+
+    .b {
+        margin: 10%;
+        height: 80%;
+        width: 80%;
+        z-index: 2;
+        animation: zoom 2.5s linear infinite;
+        animation-delay: 0.2s;
+    }
+
+    .c {
+        margin: 15%;
+        height: 70%;
+        width: 70%;
+        z-index: 3;
+        animation: zoom 2.5s linear infinite;
+        animation-delay: 0.4s;
+    }
+
+    .d {
+        margin: 20%;
+        height: 60%;
+        width: 60%;
+        z-index: 4;
+        animation: zoom 2.5s linear infinite;
+        animation-delay: 0.8s;
+    }
+
+    .e {
+        margin: 25%;
+        height: 50%;
+        width: 50%;
+        z-index: 5;
+        animation: zoom 2.5s linear infinite;
+        animation-delay: 1s;
+    }
+
+    .f {
+        margin: 30%;
+        height: 40%;
+        width: 40%;
+        z-index: 6;
+        animation: zoom 2.5s linear infinite;
+        animation-delay: 1.2s;
+    }
+
+    .g {
+        margin: 35%;
+        height: 30%;
+        width: 30%;
+        z-index: 7;
+        animation: zoom 2.5s linear infinite;
+        animation-delay: 1.4s;
+    }
+
+    .h {
+        margin: 40%;
+        height: 20%;
+        width: 20%;
+        z-index: 8;
+        animation: zoom 2.5s linear infinite;
+        animation-delay: 1.8s;
+    }
+
+    .i {
+        margin: 45%;
+        height: 10%;
+        width: 10%;
+        z-index: 9;
+        animation: zoom 2.5s linear infinite;
+        animation-delay: 2s;
+    }
+
+    @keyframes zoom {
+        50% {
+            box-shadow:inset 0px 0px 6px 8px var(--shadow);
+            transform: rotatez(360deg);
+
+        }
+
+    }
+
+    @keyframes ani {
+        50% {
+            background-image: radial-gradient(#accac9 25%, #dbebe8);
+        }
+
+    }
+
+
+</style>
+<body>
+<div id="container">
+    <div class="a"></div>
+    <div class="b"></div>
+    <div class="c"></div>
+    <div class="d"></div>
+    <div class="e"></div>
+    <div class="f"></div>
+    <div class="g"></div>
+    <div class="h"></div>
+    <div class="i"></div>
+</div>
+
+</body>
+</html>

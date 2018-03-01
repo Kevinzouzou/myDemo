@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>简易的单数字随机抽奖，抽取随机数的js特效代码</title>
+    <style>
+        html{height: 100%;}
+        body{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 60px;
+            background: url(img/1.jpg) no-repeat center center;
+            background-size: 100% 100%;
+            box-sizing: border-box;
+        }
+        input[type='button']{
+            background: #f00;
+            color: #C8CD9B;
+            border: 0;
+            padding: 3px 20px;
+            font-size: 45px;
+            font-family: "kaiti";
+            font-weight: bold;
+            font-style: italic;
+            cursor: pointer;
+            margin: 20px 30px;
+            border-radius: 10px;
+            text-shadow: 2px 2px 5px #05D;
+        }
+        .button {
+            margin: 50px auto;
+            text-align: center;
+        }
+        .contain{
+            width: 100%;
+        }
+        .num,.ww{
+            display: inline-block;
+            width: 48%;
+            vertical-align: text-top;
+            padding-left: 12%;
+            box-sizing: border-box;
+            font-size: 23px;
+            color: #CEC;
+            text-shadow: 3px 3px 6px #000;
+        }
+        .num{text-align: right;}
+        .ww{padding-left: 9%;}
+        .ww span{
+            display: inline-block;
+            width: 40px;
+            font-size: 40px;
+            color: #eee;
+            text-shadow: 3px 3px 8px #E1F;
+        }
+        #num{
+            display: inline-block;
+            background: #fff;
+            padding: 6px 20px;
+            color: #f00;
+            text-shadow: 0 0;
+            border-radius: 10px;
+            height: 46px;
+            min-width: 165px;
+            vertical-align: middle;
+            text-align: center;
+            line-height: 46px;
+        }
+
+        ol{
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 10px;
+            font-style: italic;
+            color: #DEE;
+        }
+    </style>
+</head>
+<body>
+
+<div class="button">
+    <input value="开始" id="start" type="button" />
+    <input value="停止" id="stop" type="button" />
+    <input value="获奖名单" id="winner" type="button" />
+</div>
+<div class="contain">
+    <div class="num">
+        <span>中奖者：</span>
+        <div id="num"></div>
+    </div>
+    <div class="ww">
+        <span class="winner">获奖名单</span>
+        <ol id="wins"></ol>
+    </div>
+</div>
+
+
+<script>
+    var num = document.getElementById("num");
+    var start = document.getElementById("start");
+    var _stop = document.getElementById("stop");
+    var winner = document.getElementById("winner");
+    var wins = document.getElementById("wins");
+    var arrs=[
+//        {"研发":"张三", "工号":"001"},
+//        {"生产":"李四", "工号":"002"},
+//        {"采购":"王五", "工号":"003"},
+//        {"行政":"李六", "工号":"004"},
+//        {"销售":"赵四", "工号":"005"},
+//        {"财务":"刘能", "工号":"006"}
+        "张三 001",
+        "李四 002",
+        "王五 003",
+        "李六 004",
+        "赵四 005",
+        "刘能 006"
+    ]
+    var no1=[];
+    var f=0;
+    var intv = null;
+    start.onclick = function(){
+        if(intv==undefined){
+            intv = setInterval(function(){
+                if(arrs.length<=0){
+                    num.innerHTML="恭喜 全部都中奖了！"
+                    f=1;
+                    clearInterval(intv)
+                }else{
+                    if(arrs.length==2){
+                        num.innerHTML=Math.floor(Math.random()*2)>0.5?arrs[1]:arrs[0];
+                    }else{
+                        num.innerHTML =arrs[Math.floor(Math.random()*(arrs.length-1))];
+                    }
+                    f=0;
+                }
+            },50);
+        }
+    }
+    _stop.onclick = function(){
+        var val=num.innerHTML;
+        arrs.remove(val);
+        if(f==0){
+            no1.push(val)
+        }
+        console.log(no1)
+        clearInterval(intv);
+        intv=null;
+    }
+
+    winner.onclick=function(){
+        var li="";
+        for(var i=0;i<no1.length;i++){
+            li+='<li>'+no1[i]+'</li>'
+        }
+        wins.innerHTML=li;
+        no1.length=0;
+    }
+    Array.prototype.indexOf = function(val) {
+        for (var i = 0; i < this.length; i++) {
+            if (this[i] == val) return i;
+        }
+        return -1;
+    };
+    Array.prototype.remove = function(val) {
+        var index = this.indexOf(val);
+        if (index > -1) {
+            this.splice(index, 1);
+        }
+    };
+</script>
+</body>
+</html>
